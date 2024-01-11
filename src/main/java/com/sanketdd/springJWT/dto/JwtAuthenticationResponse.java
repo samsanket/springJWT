@@ -20,4 +20,12 @@ public class JwtAuthenticationResponse {
   public void setToken(String token) {
     this.token = token;
   }
+
+
+  @Override
+  public String toString() {
+    return "JwtAuthenticationResponse{" +
+            "token='" + token + '\'' +
+            '}';
+  }
 }

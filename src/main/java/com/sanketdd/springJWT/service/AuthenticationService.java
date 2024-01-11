@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
 public class AuthenticationService {
 
     private final UserRepository userRepository;
@@ -33,6 +32,7 @@ public class AuthenticationService {
     }
 
     public JwtAuthenticationResponse signup(SignUpRequest request) {
+        System.out.println("in singun request "+ request);
         var user = new User();
         user.setEmail(request.getEmail());
         user.setFirstName(request.getFirstName());
@@ -41,8 +41,10 @@ public class AuthenticationService {
         user.setRole(Role.ROLE_USER);
         user = userService.save(user);
         var jwt = jwtService.generateToken(user);
+        System.out.println("Token genereate success");
         JwtAuthenticationResponse jwtAuthenticationResponse = new JwtAuthenticationResponse();
         jwtAuthenticationResponse.setToken(jwt);
+        System.out.println(jwtAuthenticationResponse);
         return jwtAuthenticationResponse;
     }
 
